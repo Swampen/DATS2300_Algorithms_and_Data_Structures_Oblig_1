@@ -5,8 +5,8 @@ import java.util.NoSuchElementException;
 public class Main {
 
     public static void main(String[] args) {
-        int[] a = new int[] {8,7,4,3,2};
-        System.out.println(ombyttinger(a));
+        int[] a = new int[] {6,2,3,4,5,6,7,8,9};
+        ikkeSortertExeption(a);
     }
 
     public static int maks(int[] a){        //Finner det største tallet i en tabell og flytter det til siste posisjon
@@ -38,11 +38,23 @@ public class Main {
     }
 
     public static void arrayCheck(int[] a) {
-        if(a == null) {
+        if (a == null) {
             throw new NullPointerException("array er null!");
         }
-        if(a.length == 0){
+        if (a.length == 0) {
             throw new NoSuchElementException("Tomt array!");     //Sjekker for tomt array og kaster en NoSuchElementException
+
         }
     }
+            public static int antallUlikeSortert ( int[] a){
+                return 0;
+            }
+
+        public static void ikkeSortertExeption ( int[] a){
+            for (int i = 0; i < a.length - 1; i++) {
+                if (!(a[i] <= a[i + 1])) {
+                    throw new IllegalStateException("Tabellen er ikke sortert");
+                }
+            }
+        }
 }
