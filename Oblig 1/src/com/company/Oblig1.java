@@ -32,7 +32,7 @@ public class Oblig1 {
         return antallOmbyttinger;
     }
 
-    public static int antallUlikeSortert ( int[] a){ //Gir deg et antall ulike siffere i et array som er sortert
+    public static int antallUlikeSortert(int[] a){ //Gir deg et antall ulike siffere i et array som er sortert
         ikkeSortertExeption(a);
         int teller = 0;
         for(int i = 0; i < a.length - 1; i++){
@@ -47,13 +47,23 @@ public class Oblig1 {
         return teller;
     }
 
-    public static int antallUlikeUsortert(int[] a){ //Gir deg et antall ulike siffere i et array som er usortert
+    /**
+     * Sorterer først tabellen, så teller den antall
+     * ulike siffere i tabellen med metoden {@link #antallUlikeUsortert(int[])}
+     * @param a en vilkårlig usortert tabell som skal sjekkes
+     * @return antall ulike siffere i et array som er usortert
+     */
+    public static int antallUlikeUsortert(int[] a){
         bubbleSort(a);                              //Sorterer arrayet
-        int teller = antallUlikeSortert(a);         //Kjører det sorterte arrayet gjennom algoritmen for sorterte array
-        return teller;
+        return antallUlikeSortert(a);
     }
 
-    public static void arrayCheck(int[] a) {    //sjekker at arrayet er lovlig
+    /**
+     * Sjekker om en tabell ikke er tom,
+     * eller om den peker på {@code Null}
+     * @param a tabellen som skal sjekkes
+     */
+    public static void arrayCheck(int[] a){
         if (a == null) {
             throw new NullPointerException("Arrayet er null!");   //Sjekker for et null array og kaster en NullPointerException
         }
@@ -63,7 +73,12 @@ public class Oblig1 {
         }
     }
 
-    public static void ikkeSortertExeption ( int[] a){
+    /**
+     * Sjekker om en tabell er sortert i stigende rekkefølge
+     * Thrower {@code IllegalStateException} hvis ikke.
+     * @param a tabellen som skal sjekkes
+     */
+    public static void ikkeSortertExeption(int[] a){
         for (int i = 0; i < a.length - 1; i++) {            //Looper igjennom arrayet og sjekker om det er sortert
             if (!(a[i] <= a[i + 1])) {                      //Hvis det ikke er sortert så kastes en exception
                 throw new IllegalStateException("Tabellen er ikke sortert");
@@ -94,12 +109,13 @@ public class Oblig1 {
         }
     }
 
+    //Oppgave 4
     /**
      * Sorterer en array slik at oddetallene
      * er sortert i stigene rekkefølge på venstre
      * side av tabellen, og partallene i stigende
      * rekkefølge på høyre siden av tabellen.
-     * @param a Arrayen som skal delsorteres
+     * @param a tabellen som skal delsorteres
      */
     public static void delsortering(int[] a){
         int antallOddetall = 0;
