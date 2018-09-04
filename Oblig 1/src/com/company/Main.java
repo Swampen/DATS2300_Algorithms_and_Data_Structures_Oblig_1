@@ -3,8 +3,8 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-        int[] a = new int[] {8,7,4,3,2};
-        System.out.println(ombyttinger(a));
+        int[] a = new int[] {6,2,3,4,5,6,7,8,9};
+        ikkeSortertExeption(a);
     }
 
     public static int maks(int[] a){
@@ -31,5 +31,81 @@ public class Main {
             }
         }
         return antallOmbyttinger;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public static int antallUlikeSortert(int[]  a){
+        return 0;
+    }
+
+    public static void ikkeSortertExeption(int[] a){
+        for (int i = 0; i < a.length-1; i++){
+            if (!(a[i] <= a[i+1])){
+                throw new IllegalStateException("Tabellen er ikke sortert");
+            }
+        }
     }
 }
