@@ -20,7 +20,7 @@ public class Main {
         arrayCheck(a);
         for(int i = 0; i<a.length-1; i++){  //for-loop som looper igjennom tabellen
             if(a[i]> a[i+1]){               //If-statement som sjekker om verdien på index i er større enn den neste indexen
-                bytt(a, i, i+1);
+                bytt(a, i, i+1);         //Bytter plass på indeksene
             }
         }
         return a[a.length-1];   //Returnerer den største verdien i tabellen
@@ -37,8 +37,8 @@ public class Main {
         int antallOmbyttinger = 0;
         for(int i=0; i<a.length-1; i++) {       //for-loop som looper igjennom tabellen
             if(a[i]>a[i+1]) {                   //If-statement som sjekker om verdien på index i er større enn den neste indexen
-                bytt(a, i, i+1);
-                antallOmbyttinger++;
+                bytt(a, i, i+1);             //Bytter plass på indeksene
+                antallOmbyttinger++;            //Legger til 1 på antallOmbyttinger varibelen
             }
         }
         return antallOmbyttinger;
@@ -64,7 +64,7 @@ public class Main {
         int teller = antallUlikeSortert(a);         //Kjører det sorterte arrayet gjennom algoritmen for sorterte array
         return teller;
     }
-
+    
     public static void arrayCheck(int[] a) {    //sjekker at arrayet er lovlig
         if (a == null) {
             throw new NullPointerException("array er null!");   //Sjekker for et null array og kaster en NullPointerException
