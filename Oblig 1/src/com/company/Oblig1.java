@@ -20,6 +20,12 @@ public class Oblig1 {
         a[j] = tmp;
     }
 
+    public static void bytt(char[] a, int i, int j) {    //Bytter om to tall i en tabell
+        char tmp = a[i];
+        a[i] = a[j];
+        a[j] = tmp;
+    }
+
     public static int ombyttinger(int[] a){     //regner ut hvor mange bytter det skjer når maks algoritmen blir kjørt
         arrayCheck(a);
         int antallOmbyttinger = 0;
@@ -128,5 +134,25 @@ public class Oblig1 {
         }
         bubbleSort(a, 0, antallOddetall);        //Sorterer alle oddetallene i stigende rekkefølge
         bubbleSort(a, antallOddetall, a.length);    //Sorterer de resterende partallene i stigende rekkefølge
+    }
+
+    public static void rotasjon(char[] c){
+        for (int i = 1; i < c.length; i++){
+            bytt(c, 0, i);
+        }
+    }
+
+    public static void rotasjon(char[] c, int k){
+        if (k >= 0){
+            for (int i = 0; i < k; i++) {
+                rotasjon(c);
+            }
+        }else {
+            for (int i = 0; i < Math.abs(k); i++){
+                for (int j = c.length-2; j >= 0; j--){
+                    bytt(c, c.length-1, j);
+                }
+            }
+        }
     }
 }
