@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 public class Oblig1 {
@@ -142,6 +144,12 @@ public class Oblig1 {
         }
     }
 
+    public static void rotasjon(int[] a){
+        for (int i = 1; i < a.length; i++){
+            bytt(a, 0, i);
+        }
+    }
+
     public static void rotasjon(char[] c, int k){
         if (k >= 0){
             for (int i = 0; i < k; i++) {
@@ -154,5 +162,81 @@ public class Oblig1 {
                 }
             }
         }
+    }
+
+    public static int[]indekssortering(int[] a){
+        int[] indeks = a.clone();
+        System.out.println(Arrays.toString(a));
+
+        bubbleSort(indeks);
+        System.out.println(Arrays.toString(indeks));
+
+        int like = 1;
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < a.length; j++){
+                if (indeks[i] == a[j]){
+                    indeks[i] = j;
+                    break;
+
+                }
+            }
+            System.out.println(Arrays.toString(indeks));
+        }
+
+        return indeks;
+    }
+
+    public static int[]tredjeMin(int[] a) {
+        if (a.length < 3) {
+            throw new NoSuchElementException("Tabellen må være lenger enn 3");
+        }
+        int n = a.length;     // tabellens lengde
+
+        int m = 0;      // m er posisjonen til minste verdi
+        int nm = 1;     // nm er posisjonen til nest minste verdi
+        int nnm = 2;     // nnm er posisjonen til nest nest minste verdi
+
+        if (a[2] < a[0]) {
+            m = 2;
+            nm = 0;
+            nnm = 1;
+        }
+        if (a[1] < a[0]) {
+            m = 1;
+            nm = 0;
+        }
+
+        int minstVerdi = a[m];                // minste verdi
+        int nestMinstVerdi = a[nm];           // nest minste verdi
+        int nestNestMinstVerdi = a[nnm];       // nest nest minste verdi
+
+        for (int i = 3; i < n; i++) {
+            if (a[i] < nestNestMinstVerdi) {
+                if (a[i] < nestMinstVerdi) {
+                    if (a[i] < minstVerdi) {
+                        nnm = nm;
+                        nestNestMinstVerdi = nestMinstVerdi;
+
+                        nm = m;
+                        nestMinstVerdi = minstVerdi;
+
+                        m = i;
+                        minstVerdi = a[m];
+                    }else {
+                        nnm = nm;
+                        nestNestMinstVerdi = a[nnm];
+
+                        nm = i;
+                        nestMinstVerdi = a[nm];
+
+                    }
+                }else {
+                    nnm = i;
+                    nestNestMinstVerdi = a[nnm];
+                }
+
+            }
+        }
+        return new int[] {m, nm, nnm};
     }
 }

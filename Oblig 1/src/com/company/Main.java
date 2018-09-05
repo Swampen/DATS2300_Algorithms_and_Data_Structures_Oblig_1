@@ -6,21 +6,9 @@ import static com.company.Oblig1.*;
 public class Main {
 
     public static void main(String[] args) {
-        int[] a = new int[] {6,2,3,4,5,1,7,8,9};
-        char[] chartab = new char[] {'a','b','c','d','e','f','g','h','i'};
-        int[] b = a.clone();
-        int[] c = new int[] {3,3,4,5,5,6,7,7,7,8};
-        int[] d = c.clone();
+        int[] a = new int[] {1,2,3,0};
 
-        System.out.println(Arrays.toString(chartab));
-        rotasjon(chartab, -19);
-        System.out.println(Arrays.toString(chartab));
-        /*System.out.println(Arrays.toString(a));
-        delsortering(a);
-        System.out.println(Arrays.toString(a));*/
-        /*System.out.println(maks(a));
-        System.out.println(ombyttinger(b));
-        System.out.println(antallUlikeSortert(c));
-        System.out.println(antallUlikeUsortert(d));*/
+        indekssortering(a);
+
     }
 }
