@@ -1,31 +1,74 @@
 package com.company;
 
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 public class Oblig1 {
-
-    public static int maks(int[] a){        //Finner det største tallet i en tabell og flytter det til siste posisjon
+    /**
+     * Finner maks verdi i et array ved å sammeligne hver indeks i arrayet med den neste, hvis den første er større enn
+     * den neste bytter de plass helt til det største tallet blir sist i arrayet
+     * @param a Arrayet du skal finne maks verdi i (int array)
+     * @return Maks verdien
+     */
+    public static int maks(int[] a){
         arrayCheck(a);
-        for(int i = 0; i < a.length - 1; i++){  //for-loop som looper igjennom tabellen
-            if(a[i]> a[i+1]){               //If-statement som sjekker om verdien på index i er større enn den neste indexen
-                bytt(a, i, i+1);         //Bytter plass på indeksene
+        for(int i = 0; i < a.length - 1; i++){
+            if(a[i]> a[i+1]){
+                bytt(a, i, i+1);
             }
         }
-        return a[a.length-1];   //Returnerer den største verdien i tabellen
+        return a[a.length-1];
     }
 
+    public static int min(int[] a, int fra, int til) {
+
+        if (fra < 0 || til > a.length || fra >= til) {
+            throw new IllegalArgumentException("Illegalt intervall!");
+        }
+
+        int m = fra;
+        int minverdi = a[fra];
+
+        for (int i = fra + 1; i < til; i++) {
+            if (a[i] < minverdi)
+            {
+                m = i;
+                minverdi = a[m];
+            }
+        }
+
+        return m;
+    }
+
+    /**
+     * Metode for å bytte plass på verdien av to indekser
+     * @param a Hvilket array som skal behandles (int array)
+     * @param i Første indeksen
+     * @param j andre indeksen
+     */
     public static void bytt(int[] a, int i, int j) {    //Bytter om to tall i en tabell
         int tmp = a[i];
         a[i] = a[j];
         a[j] = tmp;
     }
 
+    /**
+     * Metode for å bytte plass på verdien av to indekser
+     * @param a Hvilket array som skal behandles (char array)
+     * @param i Første indeksen
+     * @param j andre indeksen
+     */
     public static void bytt(char[] a, int i, int j) {    //Bytter om to tall i en tabell
         char tmp = a[i];
         a[i] = a[j];
         a[j] = tmp;
     }
 
+    /**
+     * Metode som teller hvor mange bytter som skjer under maks metoden
+     * @param a Arrayet du skal finne maks verdi i og hvor mange bytter (int array)
+     * @return antallet bytter som skjer i løpet av metoden
+     */
     public static int ombyttinger(int[] a){     //regner ut hvor mange bytter det skjer når maks algoritmen blir kjørt
         arrayCheck(a);
         int antallOmbyttinger = 0;
@@ -38,6 +81,12 @@ public class Oblig1 {
         return antallOmbyttinger;
     }
 
+    /**
+     * Metode som teller antall ulike siffer i en tabell ved å sammenligne en indeks med den neste, om de er forskjellige
+     * så inkrementerer den teller variablen
+     * @param a Arrayet som du skal finne hvor mange ulike siffer det er i
+     * @return Antallet ulike siffer
+     */
     public static int antallUlikeSortert(int[] a){ //Gir deg et antall ulike siffere i et array som er sortert
         ikkeSortertExeption(a);
         int teller = 0;
@@ -60,7 +109,7 @@ public class Oblig1 {
      * @return antall ulike siffere i et array som er usortert
      */
     public static int antallUlikeUsortert(int[] a){
-        bubbleSort(a);                              //Sorterer arrayet
+        bubbleSort(a, 0, a.length);                              //Sorterer arrayet
         return antallUlikeSortert(a);
     }
 
@@ -155,4 +204,51 @@ public class Oblig1 {
             }
         }
     }
+
+    /**
+     * Metode som fletter sammen to tekststrenger ved bruk av substring-metoden og rekursjon
+     * @param s tekststreng nr. 1
+     * @param t tekststreng nr. 2
+     * @return Det flettede resultatet
+     */
+    public static String flett(String s, String t){
+        checkString(s);
+        checkString(t);
+        if(s.isEmpty() || t.isEmpty()){
+            return s+t;
+        }
+
+        return s.substring(0, 1) + t.substring(0, 1) + flett(s.substring(1), t.substring(1));
+    }
+
+    public static String flett(String... s){
+        int longest = 0;
+        String returnString = "";
+        for (String c: s) {
+
+            if(c.length()>longest){
+                longest = c.length();
+
+            }
+        }
+
+        for (int i = 0; i < longest; i++){
+            for (String t: s ) {
+                if(t.length()>i){
+                    returnString += t.substring(i,i+1);
+                }
+            }
+        }
+        return returnString;
+    }
+    /**
+     * Metode for å sjekke om en String  er null
+     * @param s Stringen som skal sjekkes
+     */
+    public static void checkString(String s){
+        if(s == null){
+            throw new NullPointerException("Strengen kan ikke være null");
+        }
+    }
+    
 }
