@@ -176,7 +176,7 @@ public class Oblig1 {
         int antallOddetall = 0;
 
         for (int i = 0; i < a.length; i++) {
-            if (a[i] % 2 == 1) {                //Sjekker om tallet i tabellen er et oddetall
+            if (Math.abs(a[i] % 2) == 1) {                //Sjekker om tallet i tabellen er et oddetall
                 bytt(a, i, antallOddetall);     //Flytter oddetallet til venstre i tabellen
                 ++antallOddetall;               //Telelr antall oddetall
             }
