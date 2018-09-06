@@ -26,10 +26,10 @@ public class Oblig1Test {
         antallFeil += oppgave3();
         antallFeil += oppgave4();
         antallFeil += oppgave5();
-        //antallFeil += oppgave6();
+        antallFeil += oppgave6();
         antallFeil += oppgave7();
         antallFeil += oppgave8();
-        antallFeil += oppgave9();
+        //antallFeil += oppgave9();
         //antallFeil += oppgave10();
 
         if (antallFeil == 0) {
@@ -820,7 +820,7 @@ public class Oblig1Test {
     }
 
     ///// Oppgave 10 //////////////////////////////////////
-    /*
+
     public static int oppgave10() {
         int antallFeil = 0;
         boolean b = false;
@@ -951,7 +951,7 @@ public class Oblig1Test {
             antallFeil++;
         }
         return antallFeil;
-    }*/
+    }
 
     ///// Hjelpemetoder /////////////////////////////
 

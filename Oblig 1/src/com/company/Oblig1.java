@@ -171,6 +171,14 @@ public class Oblig1 {
         //bubbleSort(a, antallOddetall, a.length);    //Sorterer de resterende partallene i stigende rekkefølge
     }
 
+    public static void reverser(char[] c, int v, int h){
+
+        char[] temp = c.clone();
+        for (int i = v; i <= h; i++){
+            c[i] = temp[h - i + v];
+        }
+    }
+
     //Oppgave 5
     public static void rotasjon(char[] c){
         for (int i = 1; i < c.length; i++){
@@ -180,7 +188,22 @@ public class Oblig1 {
 
     //Oppgave 6
     public static void rotasjon(char[] c, int k){
-        if (k >= 0){
+        if (k > 0 && c.length !=0){
+            int n = c.length;
+            int steg = k % n;
+            reverser(c, 0, n-1);
+            reverser(c, 0, steg-1);
+            reverser(c, steg, n-1);
+        }else if (k < 0 && c.length !=0){
+            int n = c.length;
+            int steg = Math.abs(k % n);
+            reverser(c, 0, steg-1);
+            reverser(c, steg, n-1);
+            reverser(c, 0, n-1);
+        }
+
+
+        /*if (k >= 0){
             for (int i = 0; i < k; i++) {
                 rotasjon(c);
             }
@@ -190,7 +213,7 @@ public class Oblig1 {
                     bytt(c, c.length-1, j);
                 }
             }
-        }
+        }*/
     }
 
     //Oppgave 7a
@@ -260,7 +283,7 @@ public class Oblig1 {
     //Oppgave 9
     public static int[]tredjeMin(int[] a) {
         if (a.length < 3) {
-            throw new NoSuchElementException("Tabellen må være lenger enn 3");
+            throw new NoSuchElementException("Tabellen må ha en lengde på 3 eller mer");
         }
         int n = a.length;     // tabellens lengde
 
@@ -268,59 +291,50 @@ public class Oblig1 {
         int nm = 1;     // nm er posisjonen til nest minste verdi
         int nnm = 2;     // nnm er posisjonen til nest nest minste verdi
 
-        if (a[1] < a[2]){
-            m = 1;
-            nm = 2;
-            nnm = 0;
-        }
-        if (a[2] < a[1]) {
-            m = 2;
-            nm = 1;
-            nnm = 0;
-        }
-        if (a[2] < a[0]) {
-            m = 2;
-            nm = 0;
-            nnm = 1;
-        }
-        if (a[1] < a[0]) {
-            m = 1;
-            nm = 0;
-        }
-
-
         int minstVerdi = a[m];                // minste verdi
         int nestMinstVerdi = a[nm];           // nest minste verdi
         int nestNestMinstVerdi = a[nnm];       // nest nest minste verdi
 
-        for (int i = 3; i < n; i++) {
-            if (a[i] < nestNestMinstVerdi) {
-                if (a[i] < nestMinstVerdi) {
-                    if (a[i] < minstVerdi) {
-                        nnm = nm;
-                        nestNestMinstVerdi = nestMinstVerdi;
+        while (!(a[m] < a[nm] && a[nm] < a[nnm])) {
+            for (int i = 0; i < n; i++) {
 
-                        nm = m;
-                        nestMinstVerdi = minstVerdi;
+                if (a[i] < minstVerdi) {
+                    nnm = nm;
+                    nestNestMinstVerdi = nestMinstVerdi;
 
-                        m = i;
-                        minstVerdi = a[m];
-                    }else {
-                        nnm = nm;
-                        nestNestMinstVerdi = a[nnm];
+                    nm = m;
+                    nestMinstVerdi = minstVerdi;
+                    m = i;
+                    minstVerdi = a[m];
+                } else if (a[i] < nestMinstVerdi && a[i] != a[m]) {
+                    nnm = nm;
+                    nestNestMinstVerdi = a[nnm];
 
-                        nm = i;
-                        nestMinstVerdi = a[nm];
+                    nm = i;
+                    nestMinstVerdi = a[nm];
 
-                    }
-                }else {
+                } else if (a[i] < nestNestMinstVerdi && a[i] != a[m]) {
                     nnm = i;
                     nestNestMinstVerdi = a[nnm];
                 }
-
             }
         }
+        int[] treMinste = {minstVerdi, nestMinstVerdi, nestNestMinstVerdi};
         return new int[] {m, nm, nnm};
+    }
+
+    public static int min(int a[], int fra, int til){
+        int minste = Integer.MAX_VALUE;
+        int minsteIndeks = Integer.MAX_VALUE;
+
+        for (int i = 0; i < a.length; i++){
+            if (a[i] < minste){
+                minste = a[i];
+                minsteIndeks = i;
+            }
+        }
+
+        return minsteIndeks;
     }
 
     //Oppgave 10
