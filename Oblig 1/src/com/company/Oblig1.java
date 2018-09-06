@@ -1,7 +1,5 @@
 package com.company;
 
-import com.sun.xml.internal.fastinfoset.util.StringArray;
-
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
@@ -368,7 +366,23 @@ public class Oblig1 {
     public static boolean inneholdt(String a, String b){
         char [] aChar = a.toCharArray();
         char [] bChar = b.toCharArray();
-        System.out.println();
-        return a.contentEquals(b.subSequence(0,b.length()));
+        Arrays.sort(aChar);
+        Arrays.sort(bChar);
+        int teller = 0;
+        for (int i = 0; i < aChar.length; i++){
+            for (int j = 0; j < bChar.length; j++){
+                if (aChar[i] == bChar[j]){
+                    ++teller;
+                    break;
+                }
+            }
+        }
+        System.out.println(Arrays.toString(aChar));
+        System.out.println(Arrays.toString(bChar));
+        if (teller == a.length()) {
+            return true;
+        }else {
+            return false;
+        }
     }
 }
