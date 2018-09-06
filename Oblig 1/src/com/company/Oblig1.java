@@ -125,17 +125,26 @@ public class Oblig1 {
         }
     }
 
+    /**
+     * Sorterer en tabell i stigende rekkefølge
+     * @param a tabellen som skal sorteres
+     */
     public static void bubbleSort(int[] a){ //Sorterer et array ved bruk av bubble metoden
         for (int i= 0; i < a.length; i++){  //Looper igjennom arrayen til den er sortert
             maks(a);                        //Sender det største tallet bakerst
         }
     }
 
+    /**
+     * Sorterer en tabell i stigende rekkefølge innenfor et gitt intervall
+     * @param a tabellen som skal sorteres
+     * @param fra starten på intervallet
+     * @param til slutten på intervallet
+     */
     private static void bubbleSort(int[] a, int fra, int til) {
         if (til > (a.length)){
             throw new IllegalArgumentException("Til går utenfor tabellen");
         }
-
         boolean sorted = false;
         while (!sorted){
             sorted = true;
@@ -171,8 +180,13 @@ public class Oblig1 {
         //bubbleSort(a, antallOddetall, a.length);    //Sorterer de resterende partallene i stigende rekkefølge
     }
 
+    /**
+     * Reverserer en tabell innenfor gitt intervall
+     * @param c tabellen som skal reverseres
+     * @param v venstre grense
+     * @param h høyre grense
+     */
     public static void reverser(char[] c, int v, int h){
-
         char[] temp = c.clone();
         for (int i = v; i <= h; i++){
             c[i] = temp[h - i + v];
@@ -180,6 +194,11 @@ public class Oblig1 {
     }
 
     //Oppgave 5
+
+    /**
+     * Roterer en tabell med en mot høyre
+     * @param c tabellen som skal roteres
+     */
     public static void rotasjon(char[] c){
         for (int i = 1; i < c.length; i++){
             bytt(c, 0, i);
@@ -187,6 +206,13 @@ public class Oblig1 {
     }
 
     //Oppgave 6
+    /**
+     * Roterer en tabell et gitt antall ganger.
+     * Roterer mot høyre hvis k er positiv og
+     * mot venstre hvis k er negativ
+     * @param c tabellen som skal roteres
+     * @param k antall rotasjoner som skal gjennomføres
+     */
     public static void rotasjon(char[] c, int k){
         if (k > 0 && c.length !=0){
             int n = c.length;
@@ -201,19 +227,6 @@ public class Oblig1 {
             reverser(c, steg, n-1);
             reverser(c, 0, n-1);
         }
-
-
-        /*if (k >= 0){
-            for (int i = 0; i < k; i++) {
-                rotasjon(c);
-            }
-        }else {
-            for (int i = 0; i < Math.abs(k); i++){
-                for (int j = c.length-2; j >= 0; j--){
-                    bytt(c, c.length-1, j);
-                }
-            }
-        }*/
     }
 
     //Oppgave 7a
@@ -265,6 +278,14 @@ public class Oblig1 {
     }
 
     //Oppgave 8
+
+    /**
+     * Metoden vil lage oppgi indeksene til en tabell
+     * sortert i stigende rekkefølge
+     * @param a tabellen som skal indeks sortert
+     * @return en tabell med indekser til {@code int[] a}
+     * i stigende rekkefølge
+     */
     public static int[]indekssortering(int[] a){
         int[] indeks = a.clone();
 
@@ -281,6 +302,12 @@ public class Oblig1 {
     }
 
     //Oppgave 9
+
+    /**
+     * Finner de tre minste verdiene i en tabell
+     * @param a tabellen som skal søkes i
+     * @return returnerer indeksene til de tre minste verdiene
+     */
     public static int[]tredjeMin(int[] a) {
         if (a.length < 3) {
             throw new NoSuchElementException("Tabellen må ha en lengde på 3 eller mer");
@@ -323,21 +350,14 @@ public class Oblig1 {
         return new int[] {m, nm, nnm};
     }
 
-    public static int min(int a[], int fra, int til){
-        int minste = Integer.MAX_VALUE;
-        int minsteIndeks = Integer.MAX_VALUE;
-
-        for (int i = 0; i < a.length; i++){
-            if (a[i] < minste){
-                minste = a[i];
-                minsteIndeks = i;
-            }
-        }
-
-        return minsteIndeks;
-    }
-
     //Oppgave 10
+
+    /**
+     * 
+     * @param a
+     * @param b
+     * @return
+     */
     public static boolean inneholdt(String a, String b){
 
         return a.contentEquals(b.subSequence(0,b.length()));
