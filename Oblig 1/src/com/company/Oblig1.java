@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 public class Oblig1 {
+
+    //Oppgave 1
     /**
      * Finner maks verdi i et array ved å sammeligne hver indeks i arrayet med den neste, hvis den første er større enn
      * den neste bytter de plass helt til det største tallet blir sist i arrayet
@@ -18,26 +20,6 @@ public class Oblig1 {
             }
         }
         return a[a.length-1];
-    }
-
-    public static int min(int[] a, int fra, int til) {
-
-        if (fra < 0 || til > a.length || fra >= til) {
-            throw new IllegalArgumentException("Illegalt intervall!");
-        }
-
-        int m = fra;
-        int minverdi = a[fra];
-
-        for (int i = fra + 1; i < til; i++) {
-            if (a[i] < minverdi)
-            {
-                m = i;
-                minverdi = a[m];
-            }
-        }
-
-        return m;
     }
 
     /**
@@ -81,6 +63,7 @@ public class Oblig1 {
         return antallOmbyttinger;
     }
 
+    //Oppgave 2
     /**
      * Metode som teller antall ulike siffer i en tabell ved å sammenligne en indeks med den neste, om de er forskjellige
      * så inkrementerer den teller variablen
@@ -89,22 +72,23 @@ public class Oblig1 {
      */
     public static int antallUlikeSortert(int[] a){ //Gir deg et antall ulike siffere i et array som er sortert
         ikkeSortertExeption(a);
-        int teller = 0;
+        if (a.length == 0){
+            return 0;
+        }
+        int teller = 1;
         for(int i = 0; i < a.length - 1; i++){
-            if(i > 0){
-                if(a[i+1] != a[i]){             //Sjekker om det neste tallet i arrayet er likt det du er på
-                    teller++;                   // hvis den ikke er det så legger den til på telleren
-                }
-            } else {
-                teller++;                       //Hvis indeksen er null så legger den til en i counteren for å få med første tallet
+            if(a[i+1] != a[i]){             //Sjekker om det neste tallet i arrayet er likt det du er på
+                teller++;                   // hvis den ikke er det så legger den til på telleren
             }
+
         }
         return teller;
     }
 
+    //Oppgave 3
     /**
      * Sorterer først tabellen, så teller den antall
-     * ulike siffere i tabellen med metoden {@link #antallUlikeUsortert(int[])}
+     * ulike siffere i tabellen med metoden {@link #antallUlikeSortert(int[])}
      * @param a en vilkårlig usortert tabell som skal sjekkes
      * @return antall ulike siffere i et array som er usortert
      */
@@ -181,22 +165,20 @@ public class Oblig1 {
                 ++antallOddetall;               //Telelr antall oddetall
             }
         }
-        bubbleSort(a, 0, antallOddetall);        //Sorterer alle oddetallene i stigende rekkefølge
-        bubbleSort(a, antallOddetall, a.length);    //Sorterer de resterende partallene i stigende rekkefølge
+        Arrays.sort(a, 0, antallOddetall);
+        Arrays.sort(a, antallOddetall, a.length);
+        //bubbleSort(a, 0, antallOddetall);        //Sorterer alle oddetallene i stigende rekkefølge
+        //bubbleSort(a, antallOddetall, a.length);    //Sorterer de resterende partallene i stigende rekkefølge
     }
 
+    //Oppgave 5
     public static void rotasjon(char[] c){
         for (int i = 1; i < c.length; i++){
             bytt(c, 0, i);
         }
     }
 
-    public static void rotasjon(int[] a){
-        for (int i = 1; i < a.length; i++){
-            bytt(a, 0, i);
-        }
-    }
-
+    //Oppgave 6
     public static void rotasjon(char[] c, int k){
         if (k >= 0){
             for (int i = 0; i < k; i++) {
@@ -211,6 +193,7 @@ public class Oblig1 {
         }
     }
 
+    //Oppgave 7a
     /**
      * Metode som fletter sammen to tekststrenger ved bruk av substring-metoden og rekursjon
      * @param s tekststreng nr. 1
@@ -227,9 +210,10 @@ public class Oblig1 {
         return s.substring(0, 1) + t.substring(0, 1) + flett(s.substring(1), t.substring(1));
     }
 
+    //Oppgave 7b
     public static String flett(String... s){
         int longest = 0;
-        String returnString = "";
+        StringBuilder returnString = new StringBuilder();
         for (String c: s) {
 
             if(c.length()>longest){
@@ -241,11 +225,11 @@ public class Oblig1 {
         for (int i = 0; i < longest; i++){
             for (String t: s ) {
                 if(t.length()>i){
-                    returnString += t.substring(i,i+1);
+                    returnString.append(t.substring(i, i + 1));
                 }
             }
         }
-        return returnString;
+        return returnString.toString();
     }
     /**
      * Metode for å sjekke om en String  er null
@@ -256,15 +240,12 @@ public class Oblig1 {
             throw new NullPointerException("Strengen kan ikke være null");
         }
     }
-    
+
+    //Oppgave 8
     public static int[]indekssortering(int[] a){
         int[] indeks = a.clone();
-        System.out.println(Arrays.toString(a));
 
         bubbleSort(indeks);
-        System.out.println(Arrays.toString(indeks));
-
-        int like = 1;
         for (int i = 0; i < a.length; i++) {
             for (int j = 0; j < a.length; j++){
                 if (indeks[i] == a[j]){
@@ -272,12 +253,11 @@ public class Oblig1 {
                     break;
                 }
             }
-            System.out.println(Arrays.toString(indeks));
         }
-
         return indeks;
     }
 
+    //Oppgave 9
     public static int[]tredjeMin(int[] a) {
         if (a.length < 3) {
             throw new NoSuchElementException("Tabellen må være lenger enn 3");
@@ -288,6 +268,16 @@ public class Oblig1 {
         int nm = 1;     // nm er posisjonen til nest minste verdi
         int nnm = 2;     // nnm er posisjonen til nest nest minste verdi
 
+        if (a[1] < a[2]){
+            m = 1;
+            nm = 2;
+            nnm = 0;
+        }
+        if (a[2] < a[1]) {
+            m = 2;
+            nm = 1;
+            nnm = 0;
+        }
         if (a[2] < a[0]) {
             m = 2;
             nm = 0;
@@ -297,6 +287,7 @@ public class Oblig1 {
             m = 1;
             nm = 0;
         }
+
 
         int minstVerdi = a[m];                // minste verdi
         int nestMinstVerdi = a[nm];           // nest minste verdi
@@ -330,5 +321,11 @@ public class Oblig1 {
             }
         }
         return new int[] {m, nm, nnm};
+    }
+
+    //Oppgave 10
+    public static boolean inneholdt(String a, String b){
+
+        return a.contentEquals(b.subSequence(0,b.length()));
     }
 }
