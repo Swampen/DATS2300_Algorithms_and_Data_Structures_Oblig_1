@@ -386,30 +386,32 @@ public class Oblig1 {
         char [] aChar = a.toCharArray();
         char [] bChar = b.toCharArray();
         Arrays.sort(aChar);
-        boolean contains = true;
-        int teller = 0;
+        boolean inneholder = true;
         for (int i = 0; i < aChar.length; i++){
-            contains = false;
+            int teller = 0;
+            inneholder = false;
 
-            for (int l = i; l > 1; l--){
-                if (aChar[i] == aChar[i-1]){
+            for (int l = i; l >= 1; l--){
+                if (aChar[i] != aChar[l-1]){
+                    break;
+                }
+                if (aChar[i] == aChar[l-1]){
                     ++teller;
                 }
             }
             for (int j = 0; j < bChar.length; j++){
                 if (teller > 0 && aChar[i] == bChar[j]){
                     teller--;
-                    break;
-                }else {
-                    contains = true;
+                }else if (aChar[i] == bChar[j]){
+                    inneholder = true;
                     break;
                 }
             }
-            if (!contains){
+            if (!inneholder){
                 break;
             }
         }
 
-        return contains;
+        return inneholder;
     }
 }

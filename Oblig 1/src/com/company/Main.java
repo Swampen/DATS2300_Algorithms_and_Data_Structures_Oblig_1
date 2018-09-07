@@ -8,10 +8,9 @@ import static com.company.Oblig1.*;
 public class Main {
 
     public static void main(String[] args) {
-        
-        int[] d = {6, 2, 4, 6, 9, 1, 4, 9, 10};
-        System.out.println(antallUlikeUsortert(d));
-        boolean b = Oblig1.inneholdt("ABBA", "RABARBRA");
+
+        boolean b = Oblig1.inneholdt("ABBA", "ABBA");
+
         System.out.println(b);
     }
 }
