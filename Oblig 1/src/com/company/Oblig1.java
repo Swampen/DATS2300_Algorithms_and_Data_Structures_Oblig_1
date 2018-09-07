@@ -310,8 +310,8 @@ public class Oblig1 {
      */
     public static int[]indekssortering(int[] a){
         int[] indeks = a.clone();
-
         bubbleSort(indeks);
+
         for (int i = 0; i < a.length; i++) {
             for (int j = 0; j < a.length; j++){
                 if (indeks[i] == a[j]){
@@ -387,23 +387,26 @@ public class Oblig1 {
         char [] bChar = b.toCharArray();
         Arrays.sort(aChar);
         boolean inneholder = true;
+        int gammelTeller = 0;
+
         for (int i = 0; i < aChar.length; i++){
+            char undersøkElement = aChar[i];
             int teller = 0;
             inneholder = false;
 
-            for (int l = i; l >= 1; l--){
-                if (aChar[i] != aChar[l-1]){
-                    break;
-                }
-                if (aChar[i] == aChar[l-1]){
-                    ++teller;
+            if (i > 0) {
+                if (undersøkElement == aChar[i - 1]) {
+                    teller = gammelTeller + 1;
                 }
             }
             for (int j = 0; j < bChar.length; j++){
-                if (teller > 0 && aChar[i] == bChar[j]){
+                if (teller > 0 && undersøkElement == bChar[j]){
                     teller--;
-                }else if (aChar[i] == bChar[j]){
+                }else if (undersøkElement == bChar[j]){
                     inneholder = true;
+                    if (undersøkElement == aChar[i]){
+                        gammelTeller = teller;
+                    }
                     break;
                 }
             }
