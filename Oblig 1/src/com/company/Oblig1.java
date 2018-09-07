@@ -21,7 +21,7 @@ public class Oblig1 {
         }
         return a[a.length-1];
     }
-
+    
     /**
      * Metode for å bytte plass på verdien av to indekser
      * @param a Hvilket array som skal behandles (int array)
@@ -93,8 +93,35 @@ public class Oblig1 {
      * @return antall ulike siffere i et array som er usortert
      */
     public static int antallUlikeUsortert(int[] a){
-        bubbleSort(a, 0, a.length);                              //Sorterer arrayet
-        return antallUlikeSortert(a);
+        if(a.length == 0){
+            return 0;
+        }
+        int antall = 0;
+        int min = Integer.MAX_VALUE;
+        int sistemin=Integer.MIN_VALUE;
+        boolean nyFunnet = true;
+        boolean first = true;
+
+        while(nyFunnet){
+            if(first){
+                nyFunnet=true;
+                first = false;
+            } else {
+                nyFunnet=false;
+            }
+            for(int i = 0; i < a.length; i++){
+                if((a[i] < min) && (a[i] > sistemin)){
+                    min=a[i];
+                    nyFunnet=true;
+                }
+            }
+            if(nyFunnet){
+                antall++;
+            }
+            sistemin=min;
+            min = Integer.MAX_VALUE;
+        }
+        return antall;
     }
 
     /**

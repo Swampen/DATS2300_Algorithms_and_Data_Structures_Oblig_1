@@ -9,11 +9,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        char[] d = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
-        char[] d0 = {'G', 'H', 'I', 'J', 'A', 'B', 'C', 'D', 'E', 'F'};
+        int[] d = {6, 2, 4, 6, 9, 1, 4, 9, 10};
+        System.out.println(antallUlikeUsortert(d));
 
-        Oblig1.rotasjon(d, 4);
-        System.out.println(Arrays.toString(d));
-        System.out.println(Arrays.toString(d0));
     }
 }
