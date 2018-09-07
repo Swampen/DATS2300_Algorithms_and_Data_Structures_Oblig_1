@@ -221,7 +221,6 @@ public class Oblig1 {
     }
 
     //Oppgave 5
-
     /**
      * Roterer en tabell med en mot høyre
      * @param c tabellen som skal roteres
@@ -341,9 +340,9 @@ public class Oblig1 {
         }
         int n = a.length;     // tabellens lengde
 
-        /*int m = 0;      // m er posisjonen til minste verdi
-        int nm = 1;     // nm er posisjonen til nest minste verdi
-        int nnm = 2;     // nnm er posisjonen til nest nest minste verdi*/
+        int m = 0;
+        int nm = 0;
+        int nnm = 0;
 
         int minstVerdi = Integer.MAX_VALUE;                // minste verdi
         int nestMinstVerdi = Integer.MAX_VALUE;           // nest minste verdi
@@ -352,30 +351,24 @@ public class Oblig1 {
         for (int i = 0; i < n; i++) {
 
             if (a[i] < minstVerdi) {
+                nnm = nm;
                 nestNestMinstVerdi = nestMinstVerdi;
 
+                nm = m;
                 nestMinstVerdi = minstVerdi;
 
+                m = i;
                 minstVerdi = a[i];
             } else if (a[i] < nestMinstVerdi) {
+                nnm = nm;
                 nestNestMinstVerdi = nestMinstVerdi;
 
+                nm = i;
                 nestMinstVerdi = a[i];
 
             } else if (a[i] < nestNestMinstVerdi) {
-                nestNestMinstVerdi = a[i];
-            }
-        }
-        int m = 0;
-        int nm = 0;
-        int nnm = 0;
-        for (int i = 0; i < a.length; i++) {
-            if (a[i] == minstVerdi){
-                m = i;
-            }else if (a[i] == nestMinstVerdi){
-                nm = i;
-            }else if (a[i] == nestNestMinstVerdi){
                 nnm = i;
+                nestNestMinstVerdi = a[i];
             }
         }
         int[] treMinste = {minstVerdi, nestMinstVerdi, nestNestMinstVerdi};
@@ -406,10 +399,6 @@ public class Oblig1 {
         }
         System.out.println(Arrays.toString(aChar));
         System.out.println(Arrays.toString(bChar));
-        if (teller == a.length()) {
-            return true;
-        }else {
-            return false;
-        }
+        return teller == a.length();
     }
 }
