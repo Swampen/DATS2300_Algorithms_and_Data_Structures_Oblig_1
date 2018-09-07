@@ -300,7 +300,6 @@ public class Oblig1 {
     }
 
     //Oppgave 8
-
     /**
      * Metoden vil lage oppgi indeksene til en tabell
      * sortert i stigende rekkefølge
@@ -310,11 +309,27 @@ public class Oblig1 {
      */
     public static int[]indekssortering(int[] a){
         int[] indeks = a.clone();
-        bubbleSort(indeks);
+        Arrays.sort(indeks);
 
-        for (int i = 0; i < a.length; i++) {
+        int gammelTeller = 0;
+
+        for (int i = 0; i < indeks.length; i++) {
+            int indeksElement = indeks[i];
+            int teller = 0;
+
+            if (i > 0) {
+                if (indeksElement == a[indeks[i - 1]]) {
+                    teller = gammelTeller + 1;
+                    gammelTeller = teller;
+                } else {
+                    gammelTeller = 0;
+                }
+            }
             for (int j = 0; j < a.length; j++){
-                if (indeks[i] == a[j]){
+
+                if (teller > 0 && indeksElement == a[j]){
+                    teller--;
+                }else if (indeksElement == a[j]){
                     indeks[i] = j;
                     break;
                 }
@@ -397,16 +412,17 @@ public class Oblig1 {
             if (i > 0) {
                 if (undersøkElement == aChar[i - 1]) {
                     teller = gammelTeller + 1;
+                    gammelTeller = teller;
+                }else {
+                    gammelTeller = 0;
                 }
             }
-            for (int j = 0; j < bChar.length; j++){
+            for (int j = gammelTeller; j < bChar.length; j++){
+
                 if (teller > 0 && undersøkElement == bChar[j]){
                     teller--;
                 }else if (undersøkElement == bChar[j]){
                     inneholder = true;
-                    if (undersøkElement == aChar[i]){
-                        gammelTeller = teller;
-                    }
                     break;
                 }
             }
