@@ -328,7 +328,8 @@ public class Oblig1 {
             for (int j = 0; j < a.length; j++){
 
                 if (teller > 0 && indeksElement == a[j]){
-                    teller--;
+                    j+=teller-1;
+                    teller = 0;
                 }else if (indeksElement == a[j]){
                     indeks[i] = j;
                     break;
@@ -417,10 +418,11 @@ public class Oblig1 {
                     gammelTeller = 0;
                 }
             }
-            for (int j = gammelTeller; j < bChar.length; j++){
+            for (int j = 0; j < bChar.length; j++){
 
                 if (teller > 0 && undersøkElement == bChar[j]){
-                    teller--;
+                    j+=teller-1;
+                    teller = 0;
                 }else if (undersøkElement == bChar[j]){
                     inneholder = true;
                     break;
