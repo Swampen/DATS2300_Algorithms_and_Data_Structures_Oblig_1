@@ -104,7 +104,6 @@ public class Oblig1 {
 
         while(nyFunnet){
             if(first){
-                nyFunnet=true;
                 first = false;
             } else {
                 nyFunnet=false;
@@ -277,13 +276,10 @@ public class Oblig1 {
         int longest = 0;
         StringBuilder returnString = new StringBuilder();
         for (String c: s) {
-
             if(c.length()>longest){
                 longest = c.length();
-
             }
         }
-
         for (int i = 0; i < longest; i++){
             for (String t: s ) {
                 if(t.length()>i){
