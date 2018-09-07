@@ -341,36 +341,41 @@ public class Oblig1 {
         }
         int n = a.length;     // tabellens lengde
 
-        int m = 0;      // m er posisjonen til minste verdi
+        /*int m = 0;      // m er posisjonen til minste verdi
         int nm = 1;     // nm er posisjonen til nest minste verdi
-        int nnm = 2;     // nnm er posisjonen til nest nest minste verdi
+        int nnm = 2;     // nnm er posisjonen til nest nest minste verdi*/
 
-        int minstVerdi = a[m];                // minste verdi
-        int nestMinstVerdi = a[nm];           // nest minste verdi
-        int nestNestMinstVerdi = a[nnm];       // nest nest minste verdi
+        int minstVerdi = Integer.MAX_VALUE;                // minste verdi
+        int nestMinstVerdi = Integer.MAX_VALUE;           // nest minste verdi
+        int nestNestMinstVerdi = Integer.MAX_VALUE;       // nest nest minste verdi
 
-        while (!(a[m] < a[nm] && a[nm] < a[nnm])) {
-            for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) {
 
-                if (a[i] < minstVerdi) {
-                    nnm = nm;
-                    nestNestMinstVerdi = nestMinstVerdi;
+            if (a[i] < minstVerdi) {
+                nestNestMinstVerdi = nestMinstVerdi;
 
-                    nm = m;
-                    nestMinstVerdi = minstVerdi;
-                    m = i;
-                    minstVerdi = a[m];
-                } else if (a[i] < nestMinstVerdi && a[i] != a[m]) {
-                    nnm = nm;
-                    nestNestMinstVerdi = a[nnm];
+                nestMinstVerdi = minstVerdi;
 
-                    nm = i;
-                    nestMinstVerdi = a[nm];
+                minstVerdi = a[i];
+            } else if (a[i] < nestMinstVerdi) {
+                nestNestMinstVerdi = nestMinstVerdi;
 
-                } else if (a[i] < nestNestMinstVerdi && a[i] != a[m]) {
-                    nnm = i;
-                    nestNestMinstVerdi = a[nnm];
-                }
+                nestMinstVerdi = a[i];
+
+            } else if (a[i] < nestNestMinstVerdi) {
+                nestNestMinstVerdi = a[i];
+            }
+        }
+        int m = 0;
+        int nm = 0;
+        int nnm = 0;
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] == minstVerdi){
+                m = i;
+            }else if (a[i] == nestMinstVerdi){
+                nm = i;
+            }else if (a[i] == nestNestMinstVerdi){
+                nnm = i;
             }
         }
         int[] treMinste = {minstVerdi, nestMinstVerdi, nestNestMinstVerdi};
@@ -380,13 +385,31 @@ public class Oblig1 {
     //Oppgave 10
 
     /**
-     * 
+     *
      * @param a
      * @param b
      * @return
      */
     public static boolean inneholdt(String a, String b){
-
-        return a.contentEquals(b.subSequence(0,b.length()));
+        char [] aChar = a.toCharArray();
+        char [] bChar = b.toCharArray();
+        Arrays.sort(aChar);
+        Arrays.sort(bChar);
+        int teller = 0;
+        for (int i = 0; i < aChar.length; i++){
+            for (int j = 0; j < bChar.length; j++){
+                if (aChar[i] == bChar[j]){
+                    ++teller;
+                    break;
+                }
+            }
+        }
+        System.out.println(Arrays.toString(aChar));
+        System.out.println(Arrays.toString(bChar));
+        if (teller == a.length()) {
+            return true;
+        }else {
+            return false;
+        }
     }
 }
