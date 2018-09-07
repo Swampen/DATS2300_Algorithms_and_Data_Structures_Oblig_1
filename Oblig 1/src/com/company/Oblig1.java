@@ -380,21 +380,36 @@ public class Oblig1 {
      * @return
      */
     public static boolean inneholdt(String a, String b){
+        if (a.length() > b.length()){
+            return false;
+        }
         char [] aChar = a.toCharArray();
         char [] bChar = b.toCharArray();
         Arrays.sort(aChar);
-        Arrays.sort(bChar);
+        boolean contains = true;
         int teller = 0;
         for (int i = 0; i < aChar.length; i++){
-            for (int j = 0; j < bChar.length; j++){
-                if (aChar[i] == bChar[j]){
+            contains = false;
+
+            for (int l = i; l > 1; l--){
+                if (aChar[i] == aChar[i-1]){
                     ++teller;
+                }
+            }
+            for (int j = 0; j < bChar.length; j++){
+                if (teller > 0 && aChar[i] == bChar[j]){
+                    teller--;
+                    break;
+                }else {
+                    contains = true;
                     break;
                 }
             }
+            if (!contains){
+                break;
+            }
         }
-        System.out.println(Arrays.toString(aChar));
-        System.out.println(Arrays.toString(bChar));
-        return teller == a.length();
+
+        return contains;
     }
 }
