@@ -283,7 +283,7 @@ public class Oblig1 {
         for (int i = 0; i < longest; i++){
             for (String t: s ) {
                 if(t.length()>i){
-                    returnString.append(t.substring(i, i + 1));
+                    returnString.append(t, i, i + 1);
                 }
             }
         }
@@ -390,10 +390,12 @@ public class Oblig1 {
     //Oppgave 10
 
     /**
-     *
-     * @param a
-     * @param b
-     * @return
+     * Metoden sjekker om en String er inneholdt i en annen string.
+     * Bokstavene kan stå i hvilket som helst rekkefølge.
+     * @param a stringen som skal sjekkes om er inneholdt
+     * @param b stringen som skal sjekkes om inneholder a
+     * @return true hvis første ordet er inneholdt i andre ordet,
+     * hvis ikke false.
      */
     public static boolean inneholdt(String a, String b){
         if (a.length() > b.length()){
