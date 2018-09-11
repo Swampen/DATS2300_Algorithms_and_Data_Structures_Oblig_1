@@ -154,16 +154,6 @@ public class Oblig1 {
         }
     }
 
-    /**
-     * Sorterer en tabell i stigende rekkefølge
-     * @param a tabellen som skal sorteres
-     */
-    public static void bubbleSort(int[] a){ //Sorterer et array ved bruk av bubble metoden
-        for (int i= 0; i < a.length; i++){  //Looper igjennom arrayen til den er sortert
-            maks(a);                        //Sender det største tallet bakerst
-        }
-    }
-
     //Oppgave 4
     /**
      * Sorterer en array slik at oddetallene
@@ -181,10 +171,8 @@ public class Oblig1 {
                 ++antallOddetall;               //Telelr antall oddetall
             }
         }
-        Arrays.sort(a, 0, antallOddetall);
-        Arrays.sort(a, antallOddetall, a.length);
-        //bubbleSort(a, 0, antallOddetall);        //Sorterer alle oddetallene i stigende rekkefølge
-        //bubbleSort(a, antallOddetall, a.length);    //Sorterer de resterende partallene i stigende rekkefølge
+        quickSort(a, 0, antallOddetall-1);  //Sorterer alle oddetallene i stigende rekkefølge
+        quickSort(a, antallOddetall, a.length-1);
     }
 
     /**
@@ -252,6 +240,11 @@ public class Oblig1 {
         return s.substring(0, 1) + t.substring(0, 1) + flett(s.substring(1), t.substring(1));
     }
 
+    /**
+     * Metode som fletter sammen en mengde strenger
+     * @param s Strengene du vil flette sammen
+     * @return Den sammenflettede strengen
+     */
     //Oppgave 7b
     public static String flett(String... s){
         int longest = 0;
@@ -435,13 +428,14 @@ public class Oblig1 {
         quickSort(a, v, k-1);
         quickSort(a, k+1, h);
     }
-
+    
     public static int førPartisjonering(int[] a, int pivotIndex, int v, int h){
         bytt(a, pivotIndex, h);
         int pos = partisjonering(a, a[h], v, h-1);
         bytt(a, pos, h);
         return pos;
     }
+
 
     public static int partisjonering(int[] a, int pivot, int v, int h){
         while (true) {
