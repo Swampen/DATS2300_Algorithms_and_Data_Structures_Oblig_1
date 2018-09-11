@@ -161,28 +161,6 @@ public class Oblig1 {
         }
     }
 
-    /**
-     * Sorterer en tabell i stigende rekkefølge innenfor et gitt intervall
-     * @param a tabellen som skal sorteres
-     * @param fra starten på intervallet
-     * @param til slutten på intervallet
-     */
-    private static void bubbleSort(int[] a, int fra, int til) {
-        if (til > (a.length)){
-            throw new IllegalArgumentException("Til går utenfor tabellen");
-        }
-        boolean sorted = false;
-        while (!sorted){
-            sorted = true;
-            for (int i = fra; i < til-1; i++){
-                if (a[i] > a[i+1]){
-                    bytt(a, i, i+1);
-                    sorted = false;
-                }
-            }
-        }
-    }
-
     //Oppgave 4
     /**
      * Sorterer en array slik at oddetallene
@@ -309,7 +287,7 @@ public class Oblig1 {
      */
     public static int[]indekssortering(int[] a){
         int[] indeks = a.clone();
-        Arrays.sort(indeks);
+        quickSort(indeks, 0,indeks.length-1);
 
         int gammelTeller = 0;
 
@@ -436,5 +414,47 @@ public class Oblig1 {
         }
 
         return inneholder;
+    }
+
+    /**
+     * Implementasjon av quick sort
+     * @param a tabellen som skal sorteres
+     * @param v vestre grense av tabellen
+     * @param h høyre grense av tabellen
+     */
+    public static void quickSort(int[] a, int v, int h){
+        if (v >= h){
+            return;
+        }
+        int pivot = (v+h)/2;
+
+        int k = førPartisjonering(a, pivot, v, h);
+        quickSort(a, v, k-1);
+        quickSort(a, k+1, h);
+    }
+
+    public static int førPartisjonering(int[] a, int pivotIndex, int v, int h){
+        bytt(a, pivotIndex, h);
+        int pos = partisjonering(a, a[h], v, h-1);
+        bytt(a, pos, h);
+        return pos;
+    }
+
+    public static int partisjonering(int[] a, int pivot, int v, int h){
+        while (true) {
+            while (v <= h && a[v] < pivot) {
+                v++;
+            }
+            while (h >= v && a[h] >= pivot) {
+                h--;
+            }
+
+            if (v < h) {
+                bytt(a, v, h);
+                v++; h--;
+            }else {
+                return v;
+            }
+        }
     }
 }
