@@ -1,3 +1,6 @@
+/* Ole-Martin Heggen, s325905
+Michael Mobæk Thoresen, s325903*/
+
 package com.company;
 
 import java.util.Arrays;
